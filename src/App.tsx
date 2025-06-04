@@ -25,8 +25,8 @@ function App() {
         {featureFlags.showMessage.isEnabled() && (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
               fontSize: featureFlags.fontSize.getValue(),
+              // Removed color property because fontColor flag is no longer available
             }}
           >
             {featureFlags.message.getValue()}
@@ -35,8 +35,8 @@ function App() {
         {flagUsingCustomHook ? (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
               fontSize: featureFlags.fontSize.getValue(),
+              // Removed color property because fontColor flag is no longer available
             }}
           >
             This should only show if flagUsingCustomHook is true
@@ -44,8 +44,8 @@ function App() {
         ) : (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
               fontSize: featureFlags.fontSize.getValue(),
+              // Removed color property because fontColor flag is no longer available
             }}
           >
             This should only show if flagUsingCustomHook is false
