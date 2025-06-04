@@ -2,13 +2,9 @@ import cbLogo from './assets/CB-stacked-logo-full-color.svg'
 import './App.css'
 import { useFeatureFlags } from './feature-management'
 import { LoadingIndicator } from './LoadingIndicator.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { flags } from './feature-management/flags.ts'
 
 function App() {
   const featureFlags = useFeatureFlags()
-
-  const flagUsingCustomHook = useFeatureFlag(flags.namespace.namespacedFlag)
 
   if (featureFlags.loading) {
     return (
@@ -30,25 +26,6 @@ function App() {
             }}
           >
             {featureFlags.message.getValue()}
-          </p>
-        )}
-        {flagUsingCustomHook ? (
-          <p
-            style={{
-              color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
-            }}
-          >
-            This should only show if flagUsingCustomHook is true
-          </p>
-        ) : (
-          <p
-            style={{
-              color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
-            }}
-          >
-            This should only show if flagUsingCustomHook is false
           </p>
         )}
       </div>
