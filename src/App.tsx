@@ -25,7 +25,7 @@ function App() {
         {featureFlags.showMessage.isEnabled() && (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
@@ -35,7 +35,7 @@ function App() {
         {flagUsingCustomHook ? (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
@@ -44,7 +44,7 @@ function App() {
         ) : (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
