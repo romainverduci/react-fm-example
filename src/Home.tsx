@@ -1,16 +1,10 @@
 import { useFeatureFlags } from './feature-management'
-import { namespaceFlags } from './feature-management/flags'
 import { LoadingIndicator } from './LoadingIndicator'
-import { useFeatureFlag } from './useFeatureFlag'
 import cbLogo from './assets/CB-stacked-logo-full-color.svg'
 
 export const Home = () => {
   const featureFlags = useFeatureFlags()
-
-  const flagUsingCustomHook = useFeatureFlag(
-    namespaceFlags.namespace.namespacedFlag
-  )
-
+  
   if (featureFlags.loading) {
     return (
       <div className="position-relative pb-9">
@@ -26,29 +20,10 @@ export const Home = () => {
           <p
             style={{
               color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
+              fontSize: 24,
             }}
           >
             {featureFlags.default.message.getValue()}
-          </p>
-        )}
-        {flagUsingCustomHook ? (
-          <p
-            style={{
-              color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
-            }}
-          >
-            <span>This should only show if flagUsingCustomHook is true</span>
-          </p>
-        ) : (
-          <p
-            style={{
-              color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
-            }}
-          >
-            <span>This should only show if flagUsingCustomHook is false</span>
           </p>
         )}
       </div>
