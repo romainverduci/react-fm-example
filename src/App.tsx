@@ -1,21 +1,22 @@
-import cbLogo from './assets/CB-stacked-logo-full-color.svg'
-import './App.css'
-import { useFeatureFlags } from './feature-management'
-import { LoadingIndicator } from './LoadingIndicator.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { flags } from './feature-management/flags.ts'
+import cbLogo from './assets/CB-stacked-logo-full-color.svg';
+import './App.css';
+import { useFeatureFlags } from './feature-management';
+import { LoadingIndicator } from './LoadingIndicator.tsx';
+import { useFeatureFlag } from './useFeatureFlag.ts';
 
 function App() {
-  const featureFlags = useFeatureFlags()
+  const featureFlags = useFeatureFlags();
 
-  const flagUsingCustomHook = useFeatureFlag(flags.namespace.namespacedFlag)
+  const flagUsingCustomHook = useFeatureFlag(
+    featureFlags.namespace.namespacedFlag
+  );
 
   if (featureFlags.loading) {
     return (
       <div className="position-relative pb-9">
         <LoadingIndicator />
       </div>
-    )
+    );
   }
 
   return (
@@ -25,17 +26,17 @@ function App() {
         {featureFlags.showMessage.isEnabled() && (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
-            {featureFlags.message.getValue()}
+            {featureFlags.message}
           </p>
         )}
         {flagUsingCustomHook ? (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
@@ -44,7 +45,7 @@ function App() {
         ) : (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: 'purple',
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
@@ -56,14 +57,14 @@ function App() {
       <div className="card">
         <p className="access-platform">
           Sign in to the CloudBees platform below to modify flag values and see
-          the changes reflected automatically in this application.
+the changes reflected automatically in this application.
         </p>
         <a href="https://cloudbees.io" target="_blank">
           <img src={cbLogo} className="logo" alt="CloudBees logo" />
         </a>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
