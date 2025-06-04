@@ -3,22 +3,21 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { namespaceFlags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
     path: '/',
     label: 'Home',
-    element: <Home />,
+    element: <Home />, 
     index: true,
-    featureFlag: { namespace: 'routes', flag: 'home' },
+    isEnabled: true,
   },
   {
     path: 'about',
     label: 'About',
-    element: <About />,
-    featureFlag: { namespace: 'routes', flag: 'about' },
+    element: <About />, 
+    index: undefined,
+    isEnabled: false,
   },
 ]
 
@@ -34,15 +33,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {customRoutes.map((route, index) => {
-            const routeFlag = route.featureFlag
-              ? useFeatureFlag(
-                  namespaceFlags[route.featureFlag.namespace][
-                    route.featureFlag.flag
-                  ]
-                )
-              : true
-            return routeFlag ? (
+          {customRoutes.map((route, index) => 
+            route.isEnabled ? (
               <Route
                 key={index}
                 path={route.path}
@@ -50,7 +42,7 @@ function App() {
                 index={route.index}
               />
             ) : null
-          })}
+          )}
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>
       </Routes>
