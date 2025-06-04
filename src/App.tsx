@@ -22,7 +22,6 @@ function App() {
     <>
       <h1>CloudBees feature management React sample application</h1>
       <div className="card">
-        {featureFlags.showMessage.isEnabled() && (
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
@@ -31,7 +30,6 @@ function App() {
           >
             {featureFlags.message.getValue()}
           </p>
-        )}
         {flagUsingCustomHook ? (
           <p
             style={{
