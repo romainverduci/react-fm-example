@@ -3,8 +3,6 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { namespaceFlags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
@@ -13,13 +11,7 @@ export const customRoutes = [
     element: <Home />,
     index: true,
     featureFlag: { namespace: 'routes', flag: 'home' },
-  },
-  {
-    path: 'about',
-    label: 'About',
-    element: <About />,
-    featureFlag: { namespace: 'routes', flag: 'about' },
-  },
+  }
 ]
 
 const Layout = () => (
