@@ -22,7 +22,7 @@ function App() {
     <>
       <h1>CloudBees feature management React sample application</h1>
       <div className="card">
-        {featureFlags.showMessage.isEnabled() && (
+        {true && (
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
