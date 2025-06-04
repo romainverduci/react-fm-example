@@ -29,7 +29,7 @@ function App() {
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
-            {featureFlags.message.getValue()}
+            {'message to show after flag removal'}
           </p>
         )}
         {flagUsingCustomHook ? (
