@@ -19,11 +19,9 @@ function App() {
     <>
       <h1>CloudBees feature management React sample application</h1>
       <div className="card">
-        {featureFlags.showMessage.isEnabled() && (
-          <p style={{color: featureFlags.fontColor.getValue(), fontSize: featureFlags.fontSize.getValue()}}>
-            {featureFlags.message.getValue()}
-          </p>
-        )}
+        <p style={{color: featureFlags.fontColor.getValue(), fontSize: featureFlags.fontSize.getValue()}}>
+          {featureFlags.message.getValue()}
+        </p>
       </div>
 
       <div className="card">
