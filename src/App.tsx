@@ -18,7 +18,6 @@ export const customRoutes = [
     path: 'about',
     label: 'About',
     element: <About />,
-    featureFlag: { namespace: 'routes', flag: 'about' },
   },
 ]
 
