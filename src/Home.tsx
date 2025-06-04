@@ -26,7 +26,7 @@ export const Home = () => {
           <p
             style={{
               color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
+              fontSize: 24,
             }}
           >
             {featureFlags.default.message.getValue()}
@@ -36,7 +36,7 @@ export const Home = () => {
           <p
             style={{
               color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
+              fontSize: 24,
             }}
           >
             <span>This should only show if flagUsingCustomHook is true</span>
@@ -45,7 +45,7 @@ export const Home = () => {
           <p
             style={{
               color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
+              fontSize: 24,
             }}
           >
             <span>This should only show if flagUsingCustomHook is false</span>
