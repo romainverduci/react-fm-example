@@ -26,7 +26,7 @@ function App() {
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
+              fontSize: 16,
             }}
           >
             {featureFlags.message.getValue()}
@@ -36,7 +36,7 @@ function App() {
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
+              fontSize: 16,
             }}
           >
             This should only show if flagUsingCustomHook is true
@@ -45,7 +45,7 @@ function App() {
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
+              fontSize: 16,
             }}
           >
             This should only show if flagUsingCustomHook is false
