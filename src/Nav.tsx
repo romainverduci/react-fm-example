@@ -1,13 +1,13 @@
 // components/NavBar.js
 import { Link } from 'react-router-dom'
-import { useFeatureFlag } from './useFeatureFlag'
+// import { useFeatureFlag } from './useFeatureFlag'
 import { customRoutes } from './App'
-import { flags } from './feature-management/flags'
+// import { flags } from './feature-management/flags'
 
 export const Nav = () => {
   const enabledRoutes = customRoutes.filter((route) => {
     const routeFlag = route.featureFlag
-      ? useFeatureFlag(flags[route.featureFlag])
+      ? (route.featureFlag === 'about' ? true : require('./useFeatureFlag').useFeatureFlag(require('./feature-management/flags').flags[route.featureFlag]))
       : true
     return routeFlag
   })

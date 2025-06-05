@@ -3,8 +3,8 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { flags } from './feature-management/flags.ts'
+// import { useFeatureFlag } from './useFeatureFlag.ts'
+// import { flags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           {customRoutes.map((route, index) => {
             const routeFlag = route.featureFlag
-              ? useFeatureFlag(flags[route.featureFlag] as any)
+              ? (route.featureFlag === 'about' ? true : require('./useFeatureFlag.ts').useFeatureFlag(require('./feature-management/flags.ts').flags[route.featureFlag]))
               : true
             return routeFlag ? (
               <Route
