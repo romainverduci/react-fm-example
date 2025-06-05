@@ -1,10 +1,8 @@
 import './App.css'
-import { Outlet, Route, Routes } from 'react-router-dom'
+import { Route, Routes, Outlet } from 'react-router-dom'
 import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { namespaceFlags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
@@ -18,8 +16,7 @@ export const customRoutes = [
     path: 'about',
     label: 'About',
     element: <About />,
-    featureFlag: { namespace: 'routes', flag: 'about' },
-  },
+  }
 ]
 
 const Layout = () => (
@@ -34,23 +31,14 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {customRoutes.map((route, index) => {
-            const routeFlag = route.featureFlag
-              ? useFeatureFlag(
-                  namespaceFlags[route.featureFlag.namespace][
-                    route.featureFlag.flag
-                  ]
-                )
-              : true
-            return routeFlag ? (
-              <Route
-                key={index}
-                path={route.path}
-                element={route.element}
-                index={route.index}
-              />
-            ) : null
-          })}
+          {customRoutes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              element={route.element}
+              index={route.index}
+            />
+          ))}
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>
       </Routes>
