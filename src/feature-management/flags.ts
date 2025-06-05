@@ -9,8 +9,6 @@ export interface IFeatureFlagsState extends IFeatureFlags {
 export const flags = {
   home: new Flag(true),
   about: new Flag(false),
-  // Boolean - should the message be shown?
-  showMessage: new Flag(),
   // String - the message to show.
   message: new RoxString(
     'This is the default message; try changing some flag values!'
