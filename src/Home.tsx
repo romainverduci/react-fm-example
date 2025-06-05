@@ -1,13 +1,8 @@
 import { useFeatureFlags } from './feature-management'
-import { namespaceFlags } from './feature-management/flags'
-import { LoadingIndicator } from './LoadingIndicator'
-import { useFeatureFlag } from './useFeatureFlag'
 import cbLogo from './assets/CB-stacked-logo-full-color.svg'
 
 export const Home = () => {
   const featureFlags = useFeatureFlags()
-
-  const showMessage = useFeatureFlag(namespaceFlags.default.showMessage)
 
   if (featureFlags.loading) {
     return (
@@ -20,7 +15,6 @@ export const Home = () => {
     <>
       <h1>CloudBees feature management React sample application</h1>
       <div className="card">
-        {showMessage && (
           <p
             style={{
               color: featureFlags.default.fontColor.getValue(),
@@ -29,7 +23,6 @@ export const Home = () => {
           >
             {featureFlags.default.message.getValue()}
           </p>
-        )}
       </div>
 
       <div className="card">
