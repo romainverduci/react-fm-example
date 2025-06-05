@@ -15,8 +15,6 @@ export const flags = {
   message: new RoxString(
     'This is the default message; try changing some flag values!'
   ),
-  // String (with options) - the color of the message text.
-  fontColor: new RoxString('White', ['Red', 'Green', 'Blue', 'Black']),
   // Number (with options) - the size of the message text.
   fontSize: new RoxNumber(24, [12, 16, 24]),
 }
