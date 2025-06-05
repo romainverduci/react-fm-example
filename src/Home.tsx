@@ -24,7 +24,7 @@ export const Home = () => {
           <p
             style={{
               color: featureFlags.fontColor.getValue(),
-              fontSize: featureFlags.fontSize.getValue(),
+              fontSize: 24,  // Replaced the fontSize flag with its value
             }}
           >
             {featureFlags.message.getValue()}
