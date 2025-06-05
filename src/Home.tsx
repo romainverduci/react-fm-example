@@ -7,7 +7,7 @@ import cbLogo from './assets/CB-stacked-logo-full-color.svg'
 export const Home = () => {
   const featureFlags = useFeatureFlags()
 
-  const showMessage = useFeatureFlag(namespaceFlags.default.showMessage)
+  const showMessage = true;
 
   if (featureFlags.loading) {
     return (
