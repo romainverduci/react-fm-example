@@ -12,7 +12,7 @@ export const namespaceFlags = {
   },
   routes: {
     home: new Flag(true),
-    about: new Flag(false),
+    about: true, // Feature flag removed
   },
   default: {
     // Boolean - should the message be shown?

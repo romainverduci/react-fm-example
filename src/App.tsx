@@ -36,7 +36,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           {customRoutes.map((route, index) => {
             const routeFlag = route.featureFlag
-              ? useFeatureFlag(
+              ? (route.featureFlag.namespace === 'routes' && route.featureFlag.flag === 'about') ||
+                useFeatureFlag(
                   namespaceFlags[route.featureFlag.namespace][
                     route.featureFlag.flag
                   ]
