@@ -1,5 +1,5 @@
 import { useFeatureFlags } from './feature-management'
-import { namespaceFlags } from './feature-management/flags'
+import { flags } from './feature-management/flags'
 import { LoadingIndicator } from './LoadingIndicator'
 import { useFeatureFlag } from './useFeatureFlag'
 import cbLogo from './assets/CB-stacked-logo-full-color.svg'
@@ -7,7 +7,7 @@ import cbLogo from './assets/CB-stacked-logo-full-color.svg'
 export const Home = () => {
   const featureFlags = useFeatureFlags()
 
-  const showMessage = useFeatureFlag(namespaceFlags.default.showMessage)
+  const showMessage = useFeatureFlag(flags.showMessage)
 
   if (featureFlags.loading) {
     return (
@@ -23,11 +23,11 @@ export const Home = () => {
         {showMessage && (
           <p
             style={{
-              color: featureFlags.default.fontColor.getValue(),
-              fontSize: featureFlags.default.fontSize.getValue(),
+              color: featureFlags.fontColor.getValue(),
+              fontSize: featureFlags.fontSize.getValue(),
             }}
           >
-            {featureFlags.default.message.getValue()}
+            {featureFlags.message.getValue()}
           </p>
         )}
       </div>

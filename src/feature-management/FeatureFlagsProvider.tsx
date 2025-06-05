@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Rox from 'rox-browser'
-import { namespaceFlags } from './flags.ts'
+import { flags } from './flags.ts'
 import { FeatureFlagsContext, initialFlagState } from './index.ts'
 
 // TODO: insert your SDK key from https://cloudbees.io/ below.
@@ -26,10 +26,7 @@ export const FeatureFlagsProvider = ({ children }: Props): React.ReactNode => {
     setFlagState({ ...flagState, loading: true })
 
     // Register the flags
-    Object.keys(namespaceFlags).forEach((namespace) => {
-      const flagsUnderNamespace = (namespaceFlags as any)[namespace]
-      Rox.register(namespace, flagsUnderNamespace)
-    })
+    Rox.register('', flags)
 
     const initFeatureFlags = async () => {
       // Easy to forget to insert your SDK key where shown above, so let's check & remind you!

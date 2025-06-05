@@ -4,7 +4,7 @@ import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
 import { useFeatureFlag } from './useFeatureFlag.ts'
-import { namespaceFlags } from './feature-management/flags.ts'
+import { flags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
@@ -12,13 +12,13 @@ export const customRoutes = [
     label: 'Home',
     element: <Home />,
     index: true,
-    featureFlag: { namespace: 'routes', flag: 'home' },
+    featureFlag: 'home',
   },
   {
     path: 'about',
     label: 'About',
     element: <About />,
-    featureFlag: { namespace: 'routes', flag: 'about' },
+    featureFlag: 'about',
   },
 ]
 
@@ -36,11 +36,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           {customRoutes.map((route, index) => {
             const routeFlag = route.featureFlag
-              ? useFeatureFlag(
-                  namespaceFlags[route.featureFlag.namespace][
-                    route.featureFlag.flag
-                  ]
-                )
+              ? useFeatureFlag(flags[route.featureFlag] as any)
               : true
             return routeFlag ? (
               <Route
