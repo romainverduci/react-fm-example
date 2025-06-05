@@ -3,8 +3,6 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 import { Home } from './Home.tsx'
 import { About } from './About.tsx'
 import { Nav } from './Nav.tsx'
-import { useFeatureFlag } from './useFeatureFlag.ts'
-import { flags } from './feature-management/flags.ts'
 
 export const customRoutes = [
   {
@@ -18,7 +16,6 @@ export const customRoutes = [
     path: 'about',
     label: 'About',
     element: <About />,
-    featureFlag: 'about',
   },
 ]
 
@@ -35,17 +32,29 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {customRoutes.map((route, index) => {
-            const routeFlag = route.featureFlag
-              ? useFeatureFlag(flags[route.featureFlag] as any)
-              : true
-            return routeFlag ? (
-              <Route
-                key={index}
-                path={route.path}
-                element={route.element}
-                index={route.index}
-              />
-            ) : null
+            // Remove about feature flag logic since flag is always true
+            if (route.path === 'about') {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.element}
+                  index={route.index}
+                />
+              )
+            }
+            const routeFlag = route.featureFlag ? route.featureFlag !== 'about' : true
+            if (routeFlag) {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.element}
+                  index={route.index}
+                />
+              )
+            }
+            return null
           })}
           <Route path="*" element={<div>404 Not Found</div>} />
         </Route>

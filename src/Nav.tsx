@@ -1,15 +1,12 @@
 // components/NavBar.js
 import { Link } from 'react-router-dom'
-import { useFeatureFlag } from './useFeatureFlag'
 import { customRoutes } from './App'
-import { flags } from './feature-management/flags'
 
 export const Nav = () => {
+  // Since about flag is always true, we can ignore flag checks for it
   const enabledRoutes = customRoutes.filter((route) => {
-    const routeFlag = route.featureFlag
-      ? useFeatureFlag(flags[route.featureFlag])
-      : true
-    return routeFlag
+    if (route.featureFlag === 'about') return true
+    return route.featureFlag ? true : true
   })
 
   return (
