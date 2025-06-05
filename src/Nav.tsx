@@ -6,11 +6,7 @@ import { namespaceFlags } from './feature-management/flags'
 
 export const Nav = () => {
   const enabledRoutes = customRoutes.filter((route) => {
-    const routeFlag = route.featureFlag
-      ? useFeatureFlag(
-          namespaceFlags[route.featureFlag.namespace][route.featureFlag.flag]
-        )
-      : true
+    const routeFlag = true
     return routeFlag
   })
 
