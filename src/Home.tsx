@@ -23,7 +23,7 @@ export const Home = () => {
         {showMessage && (
           <p
             style={{
-              color: featureFlags.fontColor.getValue(),
+              color: "purple",
               fontSize: featureFlags.fontSize.getValue(),
             }}
           >
