@@ -10,9 +10,11 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          end=$((SECONDS + 300))
-          while [ $SECONDS -lt $end ]; do
-            echo "[$(date '+%H:%M:%S')] Running step $((SECONDS / 10))..."
+          start=$(date +%s)
+          end=$((start + 300))
+          while [ $(date +%s) -lt $end ]; do
+            elapsed=$(($(date +%s) - start))
+            echo "[$(date '+%H:%M:%S')] Running step $((elapsed / 10))... (${elapsed}s elapsed)"
             sleep 2
           done
           echo "Workflow complete after 5 minutes"
