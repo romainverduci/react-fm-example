@@ -10,56 +10,9 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          # Simulate run logs for 5 minutes
-
-          end_time=$((POSIX_SECONDS + 300))  # 5 minutes from now
-          log_count=0
-
-          log_levels=("INFO" "DEBUG" "WARN" "ERROR")
-          components=("ApiService" "QueryClient" "ErrorBoundary" "ApiErrorWrapper" "NetworkLayer")
-          messages=(
-            "Fetching automation run data"
-            "Query cache hit"
-            "Refetch interval triggered"
-            "Network request initiated"
-            "Response received successfully"
-            "Data cached successfully"
-            "Polling next run details"
-            "Stale data detected, refetching"
-            "Connection timeout, retrying"
-            "Using cached data during network failure"
-          )
-
-          echo "=== Starting Run Log Simulation (5 minutes) ==="
-          echo "Start Time: $(date '+%Y-%m-%d %H:%M:%S')"
-          echo ""
-
-          while [ $POSIX_SECONDS -lt $end_time ]; do
-            timestamp=$(date '+%Y-%m-%d %H:%M:%S.%3N')
-            level=${log_levels[$RANDOM % ${#log_levels[@]}]}
-            component=${components[$RANDOM % ${#components[@]}]}
-            message=${messages[$RANDOM % ${#messages[@]}]}
-
-            # Color coding based on log level
-            case $level in
-              INFO)   color="\033[0;32m" ;;  # Green
-              DEBUG)  color="\033[0;36m" ;;  # Cyan
-              WARN)   color="\033[0;33m" ;;  # Yellow
-              ERROR)  color="\033[0;31m" ;;  # Red
-            esac
-            reset="\033[0m"
-
-            printf "${color}[%s] [%-5s] [%-18s]${reset} %s\n" \
-              "$timestamp" "$level" "$component" "$message"
-
-            log_count=$((log_count + 1))
-
-            # Randomly vary sleep time between 0.5-2 seconds
-            sleep_time=$(awk "BEGIN {print (5 + $RANDOM % 15) / 10}")
-            sleep $sleep_time
+          end=$((SECONDS + 300))
+          while [ $SECONDS -lt $end ]; do
+            echo "[$(date '+%H:%M:%S')] Running step $((SECONDS / 10))..."
+            sleep 2
           done
-
-          echo ""
-          echo "=== Log Simulation Complete ==="
-          echo "End Time: $(date '+%Y-%m-%d %H:%M:%S')"
-          echo "Total Logs Generated: $log_count"
+          echo "Workflow complete after 5 minutes"
