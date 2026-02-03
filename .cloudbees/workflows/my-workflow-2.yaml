@@ -11,10 +11,10 @@ jobs:
         shell: sh
         run: |
           start=$(date +%s)
-          end=$((start + 300))
+          end=$((start + 600))
           while [ $(date +%s) -lt $end ]; do
             elapsed=$(($(date +%s) - start))
             echo "[$(date '+%H:%M:%S')] Running step $((elapsed / 10))... (${elapsed}s elapsed)"
             sleep 2
           done
-          echo "Workflow complete after 5 minutes"
+          echo "Workflow complete after 10 minutes"
